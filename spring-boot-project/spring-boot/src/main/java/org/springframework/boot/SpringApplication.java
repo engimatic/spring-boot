@@ -327,7 +327,7 @@ public class SpringApplication {
 			if (this.logStartupInfo) {
 				new StartupInfoLogger(this.mainApplicationClass).logStarted(getApplicationLog(), stopWatch);
 			}
-			// 发出结束执行的事件
+			// 发布启动事件
 			listeners.started(context);
 			// 执行Runners
 			callRunners(context, applicationArguments);
