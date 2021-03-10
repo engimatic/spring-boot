@@ -376,9 +376,13 @@ public class SpringApplication {
 
 	private void prepareContext(ConfigurableApplicationContext context, ConfigurableEnvironment environment,
 			SpringApplicationRunListeners listeners, ApplicationArguments applicationArguments, Banner printedBanner) {
+		// 设置容器环境，包括各种变量
 		context.setEnvironment(environment);
+		// 执行容器后置处理
 		postProcessApplicationContext(context);
+		// 行容器中的ApplicationContextInitializer
 		applyInitializers(context);
+		// 发送容器已经准备好的事件，通知各监听器
 		listeners.contextPrepared(context);
 		if (this.logStartupInfo) {
 			logStartupInfo(context.getParent() == null);
@@ -400,7 +404,9 @@ public class SpringApplication {
 		// Load the sources
 		Set<Object> sources = getAllSources();
 		Assert.notEmpty(sources, "Sources must not be empty");
+		// 加载启动类，将启动类注入容器
 		load(context, sources.toArray(new Object[0]));
+		// 发布容器已加载事件
 		listeners.contextLoaded(context);
 	}
 

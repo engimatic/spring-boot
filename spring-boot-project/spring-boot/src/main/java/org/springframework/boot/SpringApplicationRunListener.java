@@ -38,6 +38,7 @@ public interface SpringApplicationRunListener {
 	/**
 	 * Called immediately when the run method has first started. Can be used for very
 	 * early initialization.
+	 * 在run()方法开始执行时，该方法就立即被调用，可用于在初始化最早期时做一些工作
 	 */
 	default void starting() {
 	}
@@ -46,6 +47,7 @@ public interface SpringApplicationRunListener {
 	 * Called once the environment has been prepared, but before the
 	 * {@link ApplicationContext} has been created.
 	 * @param environment the environment
+	 * 当environment构建完成，ApplicationContext创建之前，该方法被调用
 	 */
 	default void environmentPrepared(ConfigurableEnvironment environment) {
 	}
@@ -54,6 +56,7 @@ public interface SpringApplicationRunListener {
 	 * Called once the {@link ApplicationContext} has been created and prepared, but
 	 * before sources have been loaded.
 	 * @param context the application context
+	 * 当ApplicationContext构建完成时，该方法被调用
 	 */
 	default void contextPrepared(ConfigurableApplicationContext context) {
 	}
@@ -62,6 +65,7 @@ public interface SpringApplicationRunListener {
 	 * Called once the application context has been loaded but before it has been
 	 * refreshed.
 	 * @param context the application context
+	 * 在ApplicationContext完成加载，但没有被刷新前，该方法被调用
 	 */
 	default void contextLoaded(ConfigurableApplicationContext context) {
 	}
@@ -72,6 +76,7 @@ public interface SpringApplicationRunListener {
 	 * ApplicationRunners} have not been called.
 	 * @param context the application context.
 	 * @since 2.0.0
+	 * 在ApplicationContext刷新并启动后，CommandLineRunners和ApplicationRunner未被调用前，该方法被调用
 	 */
 	default void started(ConfigurableApplicationContext context) {
 	}
@@ -82,6 +87,7 @@ public interface SpringApplicationRunListener {
 	 * {@link ApplicationRunner ApplicationRunners} have been called.
 	 * @param context the application context.
 	 * @since 2.0.0
+	 * 在run()方法执行完成前该方法被调用
 	 */
 	default void running(ConfigurableApplicationContext context) {
 	}
@@ -92,6 +98,7 @@ public interface SpringApplicationRunListener {
 	 * the context was created
 	 * @param exception the failure
 	 * @since 2.0.0
+	 * 当应用运行出错时该方法被调用
 	 */
 	default void failed(ConfigurableApplicationContext context, Throwable exception) {
 	}
